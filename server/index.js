@@ -4,11 +4,11 @@ var swig = require('swig');
 var app = express();
 var port = 3000;
 
-
-
 //sets the listening port to 3000, if there is none configured as an environment variable
 app.set('port', process.env.PORT || port);
 //Sets up Swig as the templating engine
+
+
 app.set('views', 'views/');
 app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
@@ -16,8 +16,8 @@ swig.setDefaults({
     cache: false ,
     autoescape: false
 });
-
-    
+console.log(__dirname + '/frontend');
+app.use(express.static(__dirname + '/../frontend'));
 
 
 app.get('/', function(req, res){
