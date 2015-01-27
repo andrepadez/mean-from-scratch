@@ -1,0 +1,15 @@
+<html>
+<head>
+    <title>Example</title>
+</head>
+<body>
+    
+    {% if qty === 0 %}
+        <h1>Out of stock}</h1>
+    {% else %}
+        {% for name in names %}
+            <h2>{{name}}</h2>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>
