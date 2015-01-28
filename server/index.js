@@ -1,3 +1,4 @@
+var path = require('path');
 var express = require('express');
 var swig = require('swig');
 
@@ -16,8 +17,8 @@ swig.setDefaults({
     cache: false ,
     autoescape: false
 });
-console.log(__dirname + '/frontend');
-app.use(express.static(__dirname + '/../frontend'));
+
+app.use(express.static( path.join(__dirname,'..', 'dist', 'dev')) );
 
 
 app.get('/', function(req, res){
