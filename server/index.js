@@ -11,29 +11,41 @@ app.set('port', process.env.PORT || port);
 
 
 app.set('views', 'views/');
-app.engine('html', swig.renderFile);
-app.set('view engine', 'html');
-swig.setDefaults({
-    cache: false ,
-    autoescape: false
-});
 
 app.use(express.static( path.join(__dirname,'..', 'dist', 'dev')) );
 
 
-app.get('/', function(req, res){
+// app.get('/', function(req, res){
 
-    //call to controller
-    var data = {
-        qty: 5,
-        names: ['a', 'b', 'c', 'd']
-    };
+//     //call to controller
+//     var data = {
+//         qty: 5,
+//         names: ['a', 'b', 'c', 'd'],
+//         hello: 'from server'
+//     };
 
-    res.render('index', data);
-});
+//     res.render('index', data);
+// });
 
 app.listen(port, function(){
     console.log('listening on port ', port);
 });
 
 
+app.get('/people', function(req, res){
+    res.send(people);
+});
+
+
+
+var people = [
+    {
+        name: 'andre'
+    },
+    {
+        name: 'brian'
+    },
+    {
+        name: 'nuno'
+    },
+];
