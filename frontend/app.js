@@ -24,7 +24,7 @@ app.config(function($stateProvider, $urlRouterProvider){
 });
 
 app.controller('MainCtrl', function($scope, $http){
-    $http.get('/people').then(function(res){
+    $http.get('http://localhost:3000/people').then(function(res){
         $scope.people = res.data;
 
         setTimeout(function(){

@@ -33,6 +33,24 @@ module.exports = function(grunt){
                 src: ['**/*.html'],
                 dest: 'dist/dev'
             }
+        },
+        browserSync: {
+            bsFiles: {
+                src : ['dist/dev/**'], 
+            },
+            options: {
+                port: 3001,
+                watchTask: true,
+                server: {
+                    baseDir: 'dist/dev/',
+                    index: 'index.html'
+                }
+            }
+        },
+        bgShell: {
+            dev: {
+                cmd: 'cd server; node index.js && grunt watch'
+            }
         }
     });
 
@@ -40,8 +58,10 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-browserify');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-browser-sync');
+    grunt.loadNpmTasks('grunt-bg-shell');
 
-    grunt.registerTask('default', ['build:dev', 'watch']);
+    grunt.registerTask('default', ['build:dev', 'browserSync', 'bgShell']);
 
     grunt.registerTask('build', function(env){
         grunt.task.run('copy');
